@@ -138,7 +138,59 @@
 //   matcher: [
 //     '/((?!api|_next|images|icons|favicon.ico|.*\\..*).*)',
 //   ],
+// // }
+// import { NextResponse } from 'next/server'
+// import createMiddleware from 'next-intl/middleware'
+// import { routing } from './i18n/routing'
+// import { getToken } from 'next-auth/jwt'
+
+// const intlMiddleware = createMiddleware(routing)
+
+// const publicPages = [
+//   '/',
+//   '/search',
+//   '/sign-in',
+//   '/sign-up',
+//   '/cart',
+//   '/cart/(.*)',
+//   '/product/(.*)',
+//   '/page/(.*)',
+// ]
+
+// export async function middleware(req: any) {
+//   const pathname = req.nextUrl.pathname
+
+//   // 🌍 locale handle
+//   const isPublic = new RegExp(
+//     `^(/(${routing.locales.join('|')}))?(${publicPages.join('|')})/?$`,
+//     'i'
+//   ).test(pathname)
+
+//   if (isPublic) {
+//     return intlMiddleware(req)
+//   }
+
+//   // 🔐 auth check (manual)
+//   const token = await getToken({
+//     req,
+//     secret: process.env.AUTH_SECRET,
+//   })
+
+//   if (!token) {
+//     const url = new URL(
+//       `/sign-in?callbackUrl=${encodeURIComponent(pathname)}`,
+//       req.nextUrl.origin
+//     )
+//     return NextResponse.redirect(url)
+//   }
+
+//   return intlMiddleware(req)
 // }
+
+// export const config = {
+//   matcher: ['/((?!api|_next|images|icons|favicon.ico|.*\\..*).*)'],
+// }
+
 import { NextResponse } from 'next/server'
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
@@ -152,41 +204,29 @@ const publicPages = [
   '/sign-in',
   '/sign-up',
   '/cart',
-  '/cart/(.*)',
-  '/product/(.*)',
-  '/page/(.*)',
+  '/product',
+  '/page',
 ]
 
 export async function middleware(req: any) {
   const pathname = req.nextUrl.pathname
 
-  // 🌍 locale handle
-  const isPublic = new RegExp(
-    `^(/(${routing.locales.join('|')}))?(${publicPages.join('|')})/?$`,
-    'i'
-  ).test(pathname)
+  // check if public page
+  const isPublic = publicPages.some(page => pathname.startsWith(page))
 
-  if (isPublic) {
-    return intlMiddleware(req)
-  }
+  if (isPublic) return intlMiddleware(req)
 
-  // 🔐 auth check (manual)
-  const token = await getToken({
-    req,
-    secret: process.env.AUTH_SECRET,
-  })
-
+  // auth check
+  const token = await getToken({ req, secret: process.env.AUTH_SECRET })
   if (!token) {
-    const url = new URL(
-      `/sign-in?callbackUrl=${encodeURIComponent(pathname)}`,
-      req.nextUrl.origin
+    return NextResponse.redirect(
+      `/sign-in?callbackUrl=${encodeURIComponent(pathname)}`
     )
-    return NextResponse.redirect(url)
   }
 
   return intlMiddleware(req)
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|images|icons|favicon.ico|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|images|favicon.ico).*)'],
 }

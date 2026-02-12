@@ -58,4 +58,5 @@ import type { NextAuthConfig } from 'next-auth'
 export default {
   providers: [],
   trustHost: true,
+  secret: process.env.AUTH_SECRET, // 🔑 এটা অবশ্যই থাকবে
 } satisfies NextAuthConfig
