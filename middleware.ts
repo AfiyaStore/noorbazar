@@ -130,3 +130,12 @@ export default auth((req) => {
 
   return intlMiddleware(req)
 })
+
+/**
+ * 🔥 THIS IS THE MOST IMPORTANT PART
+ */
+export const config = {
+  matcher: [
+    '/((?!api|_next|images|icons|favicon.ico|.*\\..*).*)',
+  ],
+}
