@@ -191,12 +191,59 @@
 //   matcher: ['/((?!api|_next|images|icons|favicon.ico|.*\\..*).*)'],
 // }
 
-import { NextResponse } from 'next/server'
+
+
+//last
+
+
+
+
+// import { NextResponse } from 'next/server'
+// import createMiddleware from 'next-intl/middleware'
+// import { routing } from './i18n/routing'
+// import { getToken } from 'next-auth/jwt'
+
+// const intlMiddleware = createMiddleware(routing)
+
+// const publicPages = [
+//   '/',
+//   '/search',
+//   '/sign-in',
+//   '/sign-up',
+//   '/cart',
+//   '/product',
+//   '/page',
+// ]
+
+// export async function middleware(req: any) {
+//   const pathname = req.nextUrl.pathname
+
+//   // check if public page
+//   const isPublic = publicPages.some(page => pathname.startsWith(page))
+
+//   if (isPublic) return intlMiddleware(req)
+
+//   // auth check
+//   const token = await getToken({ req, secret: process.env.AUTH_SECRET })
+//   if (!token) {
+//     return NextResponse.redirect(
+//       `/sign-in?callbackUrl=${encodeURIComponent(pathname)}`
+//     )
+//   }
+
+//   return intlMiddleware(req)
+// }
+
+// export const config = {
+//   matcher: ['/((?!api|_next|images|favicon.ico).*)'],
+// }
+
+
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
-import { getToken } from 'next-auth/jwt'
 
-const intlMiddleware = createMiddleware(routing)
+import NextAuth from 'next-auth'
+import authConfig from './auth.config'
 
 const publicPages = [
   '/',
@@ -204,29 +251,42 @@ const publicPages = [
   '/sign-in',
   '/sign-up',
   '/cart',
-  '/product',
-  '/page',
+  '/cart/(.*)',
+  '/product/(.*)',
+  '/page/(.*)',
+  // (/secret requires auth)
 ]
 
-export async function middleware(req: any) {
-  const pathname = req.nextUrl.pathname
+const intlMiddleware = createMiddleware(routing)
+const { auth } = NextAuth(authConfig)
 
-  // check if public page
-  const isPublic = publicPages.some(page => pathname.startsWith(page))
+export default auth((req) => {
+  const publicPathnameRegex = RegExp(
+    `^(/(${routing.locales.join('|')}))?(${publicPages
+      .flatMap((p) => (p === '/' ? ['', '/'] : p))
+      .join('|')})/?$`,
+    'i'
+  )
+  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname)
 
-  if (isPublic) return intlMiddleware(req)
-
-  // auth check
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET })
-  if (!token) {
-    return NextResponse.redirect(
-      `/sign-in?callbackUrl=${encodeURIComponent(pathname)}`
-    )
+  if (isPublicPage) {
+    // return NextResponse.next()
+    return intlMiddleware(req)
+  } else {
+    if (!req.auth) {
+      const newUrl = new URL(
+        `/sign-in?callbackUrl=${encodeURIComponent(req.nextUrl.pathname) || '/'
+        }`,
+        req.nextUrl.origin
+      )
+      return Response.redirect(newUrl)
+    } else {
+      return intlMiddleware(req)
+    }
   }
-
-  return intlMiddleware(req)
-}
+})
 
 export const config = {
-  matcher: ['/((?!api|_next|images|favicon.ico).*)'],
+  // Skip all paths that should not be internationalized
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
 }
