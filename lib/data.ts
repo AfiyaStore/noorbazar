@@ -1516,7 +1516,7 @@ We also provide helpful resources such as order tracking, product guides, and FA
       site: {
         name: 'NoorBazar',
         description:
-          'NoorMart is a modern, fast, and secure e-commerce platform inspired by Amazon. Built with Next.js and MongoDB, NoorMart delivers a seamless shopping experience with lightning-fast performance, smart search, secure payments, and scalable architecture—designed for the future of online shopping.',
+          'NoorBazar is a modern, fast, and secure e-commerce platform inspired by Amazon. Built with Next.js and MongoDB, NoorMart delivers a seamless shopping experience with lightning-fast performance, smart search, secure payments, and scalable architecture—designed for the future of online shopping.',
         keywords: 'NoorBazer,e-commerce,noor,bazer,noorba,noo',
         url: 'https://noorbazar.vercel.app',
         logo: '/icons/logo.svg',
