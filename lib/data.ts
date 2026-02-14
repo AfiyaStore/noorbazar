@@ -267,7 +267,7 @@ import { i18n } from '@/i18n-config'
 const users: IUserInput[] = [
   {
     name: 'Admin',
-    email: 'admin@noorbazer.com',
+    email: 'admin-noorbazer@gmail.com',
     password: bcrypt.hashSync('123456', 5),
     role: 'Admin',
     address: {
@@ -1523,7 +1523,7 @@ We also provide helpful resources such as order tracking, product guides, and FA
         slogan: 'Spend less, enjoy more.',
         author: 'Next Ecommerce',
         copyright: '2000-2026, noorbazar.com, Inc. or its affiliates',
-        email: 'admin@example.com',
+        email: 'habiburnatore1287@gmail.com',
         address: 'Rajippur Purbo Para Mosjid.92Q7+GGM,https://maps.app.goo.gl/ZW2wAQFLwzyAqj4j9',
         phone: '+8801410780770',
       },

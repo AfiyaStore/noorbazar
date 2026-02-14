@@ -32,17 +32,17 @@ PurchaseReceiptEmail.PreviewProps = {
     taxPrice: 0,
     shippingPrice: 0,
     user: {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
+      name: 'habib',
+      email: 'habib@gmail.com',
     },
     shippingAddress: {
-      fullName: 'John Doe',
-      street: '123 Main St',
-      city: 'New York',
-      postalCode: '12345',
-      country: 'USA',
-      phone: '123-456-7890',
-      province: 'New York',
+      fullName: 'habib',
+      street: 'rajipur purbo para mosjid',
+      city: 'natore',
+      postalCode: '6400',
+      country: 'BD',
+      phone: '01410780770',
+      province: 'Rajshahi',
     },
     items: [
       {
