@@ -48,7 +48,7 @@ const main = async () => {
           x++
           rws.push({
             ...reviews.filter((x) => x.rating === j + 1)[
-              x % reviews.filter((x) => x.rating === j + 1).length
+            x % reviews.filter((x) => x.rating === j + 1).length
             ],
             isVerifiedPurchase: true,
             product: createdProducts[i]._id,
@@ -97,16 +97,16 @@ const generateOrder = async (
 
   const product2 = await Product.findById(
     products[
-      i % products.length >= products.length - 1
-        ? (i % products.length) - 1
-        : (i % products.length) + 1
+    i % products.length >= products.length - 1
+      ? (i % products.length) - 1
+      : (i % products.length) + 1
     ]
   )
   const product3 = await Product.findById(
     products[
-      i % products.length >= products.length - 2
-        ? (i % products.length) - 2
-        : (i % products.length) + 2
+    i % products.length >= products.length - 2
+      ? (i % products.length) - 2
+      : (i % products.length) + 2
     ]
   )
 
@@ -186,18 +186,18 @@ export const calcDeliveryDateAndPriceForSeed = ({
 
   const deliveryDate =
     availableDeliveryDates[
-      deliveryDateIndex === undefined
-        ? availableDeliveryDates.length - 1
-        : deliveryDateIndex
+    deliveryDateIndex === undefined
+      ? availableDeliveryDates.length - 1
+      : deliveryDateIndex
     ]
 
   const shippingPrice = deliveryDate.shippingPrice
 
-  const taxPrice = round2(itemsPrice * 0.15)
+  const taxPrice = round2(itemsPrice * 0.025)
   const totalPrice = round2(
     itemsPrice +
-      (shippingPrice ? round2(shippingPrice) : 0) +
-      (taxPrice ? round2(taxPrice) : 0)
+    (shippingPrice ? round2(shippingPrice) : 0) +
+    (taxPrice ? round2(taxPrice) : 0)
   )
   return {
     availableDeliveryDates,

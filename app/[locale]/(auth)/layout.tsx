@@ -2,6 +2,7 @@ import { getSetting } from '@/lib/actions/setting.actions'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import logo from '@/public/icons/logo.svg';
 
 export default async function AuthLayout({
   children,
@@ -14,7 +15,7 @@ export default async function AuthLayout({
       <header className='mt-8'>
         <Link href='/'>
           <Image
-            src='/icons/logo.svg'
+            src={logo}
             alt='logo'
             width={64}
             height={64}

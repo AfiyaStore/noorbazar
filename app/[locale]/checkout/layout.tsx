@@ -2,6 +2,7 @@ import { HelpCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import logo from '@/public/icons/logo.svg';
 
 export default function CheckoutLayout({
   children,
@@ -14,7 +15,7 @@ export default function CheckoutLayout({
         <div className='max-w-6xl mx-auto flex justify-between items-center'>
           <Link href='/'>
             <Image
-              src='/icons/logo.svg'
+              src={logo}
               alt='logo'
               width={70}
               height={70}

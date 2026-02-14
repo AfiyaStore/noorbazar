@@ -4,6 +4,7 @@ import React from 'react'
 import Menu from '@/components/shared/header/menu'
 import { AdminNav } from './admin-nav'
 import { getSetting } from '@/lib/actions/setting.actions'
+import logo from '@/public/icons/logo.svg';
 
 export default async function AdminLayout({
   children,
@@ -18,7 +19,7 @@ export default async function AdminLayout({
           <div className='flex h-16 items-center px-2'>
             <Link href='/'>
               <Image
-                src='/icons/logo.svg'
+                src={logo}
                 width={48}
                 height={48}
                 alt={`${site.name} logo`}
