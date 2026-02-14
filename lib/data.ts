@@ -1557,10 +1557,10 @@ We also provide helpful resources such as order tracking, product guides, and FA
           name: 'United States Dollar',
           code: 'USD',
           symbol: '$',
-          convertRate: 1,
+          convertRate: 0.0082,
         },
         // { name: 'Euro', code: 'EUR', symbol: '€', convertRate: 0.96 },
-        { name: 'Bangladeshi Taka', code: 'BDT', symbol: '৳', convertRate: 110.0 },
+        { name: 'Bangladeshi Taka', code: 'BDT', symbol: '৳', convertRate: 1 },
       ],
       defaultCurrency: 'BDT',
       availablePaymentMethods: [
