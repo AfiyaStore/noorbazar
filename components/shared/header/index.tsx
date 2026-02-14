@@ -7,6 +7,7 @@ import data from '@/lib/data'
 import Sidebar from './sidebar'
 import { getSetting } from '@/lib/actions/setting.actions'
 import { getTranslations } from 'next-intl/server'
+import logo from '@/public/icons/logo.svg';
 
 export default async function Header() {
   const categories = await getAllCategories()
@@ -22,7 +23,7 @@ export default async function Header() {
               className='flex items-center header-button font-extrabold text-2xl m-1 '
             >
               <Image
-                src={site.logo}
+                src={site.logo ? site.logo : logo}
                 width={40}
                 height={40}
                 alt={`${site.name} logo`}
