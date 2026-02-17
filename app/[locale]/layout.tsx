@@ -62,6 +62,7 @@ export default async function AppLayout({
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.png" />
+        <meta name="google-site-verification" content="heHDooQkNQczTWpeXeJskKvVSj8iLmpjcuR_qq_iQg8" />
       </head>
       <body
         className={`min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
