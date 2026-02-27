@@ -18,20 +18,20 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
-export const metadata = {
-  title: "NoorBazar - Online Shopping in Bangladesh | Shoes, T-Shirts, Watches",
-  description:
-    "NoorBazar is a trusted online shopping platform in Bangladesh offering shoes, T-shirts, wrist watches and more with fast delivery, Bkash, Nagad and Cash on Delivery.",
-  keywords: [
-    "NoorBazar",
-    "online shopping Bangladesh",
-    "buy shoes online BD",
-    "T-shirts online BD",
-    "wrist watches Bangladesh",
-    "cash on delivery BD",
-    "Bkash online shop",
-  ],
-};
+// export const metadata = {
+//   title: "NoorBazar - Online Shopping in Bangladesh | Shoes, T-Shirts, Watches",
+//   description:
+//     "NoorBazar is a trusted online shopping platform in Bangladesh offering shoes, T-shirts, wrist watches and more with fast delivery, Bkash, Nagad and Cash on Delivery.",
+//   keywords: [
+//     "NoorBazar",
+//     "online shopping Bangladesh",
+//     "buy shoes online BD",
+//     "T-shirts online BD",
+//     "wrist watches Bangladesh",
+//     "cash on delivery BD",
+//     "Bkash online shop",
+//   ],
+// };
 export async function generateMetadata() {
   const {
     site: { slogan, name, description, url },

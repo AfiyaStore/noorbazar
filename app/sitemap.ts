@@ -10,9 +10,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: 'https://noorbazar.vercel.app/en',
             lastModified: new Date(),
         },
-        {
-            url: 'https://noorbazar.vercel.app/bn',
-            lastModified: new Date(),
-        },
     ]
 }
