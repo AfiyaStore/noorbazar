@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://noorbazar.vercel.app
+
+# Sitemaps
+Sitemap: https://noorbazar.vercel.app/sitemap.xml
